@@ -1,3 +1,23 @@
+# Author 9525469 
+# Date 2023-11-10T16:16:00
+"""
+BarCodeDector
+
+    usage: main.py [-h] -p PATH [-c COLOR]
+
+    options:
+      -h, --help                show this help message and exit
+      -p PATH, --path PATH      Path to the input image
+      -c COLOR, --color COLOR   Color of the border, fmt: r:g:b
+
+Example usage:
+
+    python3 -p barcode-1.tif
+    python3 --path barcode-0.tif --color "255:0:0"
+    python3 -p barcode-0.tif -c "255:0:0"
+
+Can not be included as a library, will throw an RuntimeError.
+"""
 import argparse
 import cv2
 import numpy as np
