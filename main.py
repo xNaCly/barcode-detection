@@ -50,14 +50,13 @@ class BarCodeDector:
         plt.show()
 
     def sharr_gradient(self, image: Image) -> Image:
-        depth = cv2.CV_32F
-        x_gradient = cv2.Sobel(image, ddepth=depth, dx=1, dy=0, ksize=-1)
-        y_gradient = cv2.Sobel(image, ddepth=depth, dx=0, dy=1, ksize=-1)
+        x_gradient = cv2.Sobel(image, ddepth=cv2.CV_32F, dx=1, dy=0, ksize=-1)
+        y_gradient = cv2.Sobel(image, ddepth=cv2.CV_32F, dx=0, dy=1, ksize=-1)
         result = cv2.subtract(x_gradient, y_gradient)
         return cv2.convertScaleAbs(result)
 
     def filter_noise(self, image: Image) -> Image:
-        blur = cv2.blur(image, (9,9))
+        blur = cv2.blur(image, (9,9), 0)
         (_, thresh) = cv2.threshold(blur, 225, 255, cv2.THRESH_BINARY)
         return thresh
 
@@ -71,7 +70,7 @@ class BarCodeDector:
 
     def contours(self, image: Image) -> np.intp:
         (cnts, _) = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        c = sorted(cnts, key=cv2.contourArea, reverse=True)[0]
+        c = max(cnts, key=cv2.contourArea)
 
         rect = cv2.minAreaRect(c)
         box = cv2.boxPoints(rect)
