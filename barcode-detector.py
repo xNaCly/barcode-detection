@@ -12,9 +12,9 @@ BarCodeDector
 
 Example usage:
 
-    python3 -p barcode-1.tif
-    python3 --path barcode-0.tif --color "255:0:0"
-    python3 -p barcode-0.tif -c "255:0:0"
+    python3 barcodescanner.py -p barcode-1.tif
+    python3 barcodescanner.py --path barcode-0.tif --color "255:0:0"
+    python3 barcodescanner.py -p barcode-0.tif -c "255:0:0"
 
 Can not be included as a library, will throw an RuntimeError.
 """
@@ -42,7 +42,7 @@ class BarCodeDector:
     """
     border_color: tuple[int, int, int] 
     """
-    Color to apply to the border drawn around the detected barcode, format: rgb, defaults to (0,255,0)
+    Color to apply to the border drawn around the detected barcode, format: (r,g,b), defaults to (0,255,0)
     """
 
     def __init__(self, image_path: str, border_color: str):
