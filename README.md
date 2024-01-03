@@ -5,6 +5,10 @@
 ```shell
 $ python3 barcode-detector.py --path example.tif --color "255:0:255"
 ```
+![Figure_1](https://github.com/xNaCly/barcode-detection/assets/47723417/3e8359f6-46b8-4c25-a7af-692f56fee2c4)
+
+
+
 
 ## Usage
 
