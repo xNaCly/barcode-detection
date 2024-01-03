@@ -24,4 +24,14 @@ options:
 ## Inner workings
 
 The barcode detector works by applying several filters to an image and
-extracting the contours of the barcodes.
+extracting the contours of the barcodes. If a barcode could not be detected
+consider tweaking constants in the source file.
+
+The algorithm is made up of the following filters and stages:
+
+1. sharr gradient in x and y direction
+2. subtract y from x gradient for finding barcode region
+3. blur and threshold
+4. Closing kernel
+5. Series of dilations and erosions
+6. Largest contour should be the barcode
